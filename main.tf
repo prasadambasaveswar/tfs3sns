@@ -4,18 +4,19 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_s3_bucket" "s3_bucket" {
-  bucket                 = "${var.bucket}"
+resource "aws_s3_bucket" "egress-bucket" {
+  bucket                 = "${var.s3-egress-bucket}"
   acl                    = "${var.acl}"
   tags                   = "${var.tags}"
   force_destroy          = "${var.force_destroy}"
   versioning = "${var.versioning}"
   lifecycle_rule = "${var.lifecycle_rule}"
   logging = "${var.logging}"
- }
- 
-resource "aws_sns_topic" "s3-topic" {
-  name = "${var.sns_topic_name}"
+}
+
+resource "aws_sns_topic" "topic" {
+  name = "${var.sns-egress-notification}"
+
   policy = <<POLICY
 {
     "Version":"2012-10-17",
@@ -23,22 +24,21 @@ resource "aws_sns_topic" "s3-topic" {
         "Effect": "Allow",
         "Principal": {"AWS":"*"},
         "Action": "SNS:Publish",
-        "Resource": "arn:aws:sns:*:*:${var.sns_topic_name}",
+        "Resource": "arn:aws:sns:*:*:${var.sns-egress-notification}",
         "Condition":{
-            "ArnLike":{"aws:SourceArn":"${aws_s3_bucket.s3_bucket.arn}"}
+            "ArnLike":{"aws:SourceArn":"${aws_s3_bucket.egress-bucket.arn}"}
         }
     }]
 }
 POLICY
 }
 
-resource "aws_s3_bucket_notification" "bucket_notification_new_sns" {
-  count = "${var.create_s3_notification && var.create_sns_notification ? 1 : 0}"
-  bucket = "${aws_s3_bucket.s3_bucket.id}"
+resource "aws_s3_bucket_notification" "egress_bucket_notification" {
+  bucket = "${aws_s3_bucket.egress-bucket.id}"
+
   topic {
-    topic_arn = "${aws_sns_topic.s3-topic.arn}"
-    events         = "${var.events}"
-    filter_prefix  = "${var.filter_prefix}"
-    filter_suffix  = "${var.filter_suffix}"
+    topic_arn     = "${aws_sns_topic.topic.arn}"
+    events        = "${var.events}"
+    filter_suffix = "${var.filter_suffix}"
   }
 }
