@@ -1,8 +1,8 @@
 s3-egress-bucket   			=   "egress-bucket-devs3"
 acl     					=   ""
 force_destroy    			=   ""
-events		                =   []
-filter_suffix		        =   ""
+events		                =   ["s3:ObjectCreated:*"]
+filter_suffix		        =   ".log"
 tags             =   {
       "Environment"="DEV"
       "Requestor"="ALI"
