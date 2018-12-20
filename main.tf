@@ -14,17 +14,6 @@ resource "aws_s3_bucket" "s3_bucket" {
   logging = "${var.logging}"
  }
  
-resource "aws_s3_bucket_notification" "bucket_notification_existing_sns" {
-  count = "${var.create_s3_notification && var.existing_sns_notification ? 1 : 0}"
-  bucket = "${aws_s3_bucket.s3_bucket.id}"
-  topic {
-    topic_arn      = "${var.topic_arn}"
-    events         = "${var.events}"
-    filter_prefix  = "${var.filter_prefix}"
-    filter_suffix  = "${var.filter_suffix}"
-  }
-}
-
 resource "aws_s3_bucket_notification" "bucket_notification_new_sns" {
   count = "${var.create_s3_notification && var.create_sns_notification ? 1 : 0}"
   bucket = "${aws_s3_bucket.s3_bucket.id}"
