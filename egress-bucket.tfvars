@@ -17,5 +17,5 @@ tags             =   {
       "AppName"="S3SNS"
 }
 sns_topic_resource              =   [] 
-sns_topic_name				    =   ""
+sns_topic_name				    =   "sns-egress-notfication"
 sns_topic_subscription_principal=   []
