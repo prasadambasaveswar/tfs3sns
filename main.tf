@@ -21,7 +21,6 @@ resource "aws_s3_bucket_notification" "bucket_notification_existing_sns" {
   topic {
     topic_arn      = "${var.topic_arn}"
     events         = "${var.events}"
-    filter_prefix  = "${var.filter_prefix}"
     filter_suffix  = "${var.filter_suffix}"
   }
 }
@@ -32,7 +31,6 @@ resource "aws_s3_bucket_notification" "bucket_notification_new_sns" {
   topic {
     topic_arn = "${aws_sns_topic.s3-topic.arn}"
     events         = "${var.events}"
-    filter_prefix  = "${var.filter_prefix}"
     filter_suffix  = "${var.filter_suffix}"
   }
 }
