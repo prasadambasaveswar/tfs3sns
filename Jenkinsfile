@@ -34,7 +34,7 @@ pipeline {
 
                  # Setups up Terraform state file and source modules
                  set -x #Turns on screen outputs
-                 ./terraform init ./$tf_path
+                 ./terraform init $tf_path
 
                  '''
             }
@@ -56,7 +56,7 @@ pipeline {
 
                   echo "Terraform Plan of $account_moniker Build in ... $aws_account / $aws_region"
                   set -x
-                  ./terraform plan -var-file="./${tf_path}/${tf_vars}" -out=current.tfplan ./$tf_path
+                  ./terraform plan -var-file="${tf_path}/${tf_vars}" -out=current.tfplan $tf_path
 
                   '''
 
@@ -79,7 +79,7 @@ pipeline {
 
                   echo "Terraform Destroy of $account_moniker in ... $aws_account / $aws_region"
                   set -x
-                  ./terraform destroy -var-file="./${tf_path}/${tf_vars}" -auto-approve ./$tf_path
+                  ./terraform destroy -var-file="${tf_path}/${tf_vars}" -auto-approve $tf_path
 
                   '''
 
