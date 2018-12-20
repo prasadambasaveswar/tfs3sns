@@ -6,7 +6,7 @@ create_sns_notification     =   "true"
 existing_sns_notification   =   "true"
 id                  		=   ""
 topic_arn                	=   ""
-events		                =   ""
+events		                =   "[]"
 filter_prefix			    =   ""
 filter_suffix		        =   ""
 tags             =   {
@@ -16,6 +16,6 @@ tags             =   {
       "AppId"="S3-SNS"
       "AppName"="S3SNS"
 }
-sns_topic_resource              =   "" 
+sns_topic_resource              =   "[]" 
 sns_topic_name				    =   ""
-sns_topic_subscription_principal=   ""
+sns_topic_subscription_principal=   "[]"
