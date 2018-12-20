@@ -57,16 +57,6 @@ resource "aws_sns_topic" "s3-topic" {
         "Condition":{
             "ArnLike":{"aws:SourceArn":"${aws_s3_bucket.s3_bucket.arn}"}
         }
-      },
-      {
-        "Effect": "Allow",
-        "Sid": "SNSSubscribers",
-        "Principal":{ "AWS": ${jsonencode(var.sns_topic_subscription_principal)}  },
-        "Action": [
-            "SNS:Subscribe",
-            "SNS:Receive"
-          ],
-        "Resource": ${jsonencode(var.sns_topic_resource)}
       }
     ]
 }
