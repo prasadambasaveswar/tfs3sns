@@ -3,7 +3,7 @@ pipeline {
 
   environment {
       tf_version = '0.11.7'
-      config_path = 'prasadambasaveswar/tfs3sns'
+      config_path = '/var/lib/jenkins/workspace/tfs3sns/'
     }
 
     parameters {
