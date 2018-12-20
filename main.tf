@@ -1,4 +1,9 @@
 #s3 bucket
+
+provider "aws" {
+  region = "${data.terraform_remote_state.aws_region}"
+}
+
 resource "aws_s3_bucket" "s3_bucket" {
   bucket                 = "${var.bucket}"
   acl                    = "${var.acl}"
