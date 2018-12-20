@@ -1,4 +1,4 @@
-s3-egress-bucket   			=   "egress_bucket"
+s3-egress-bucket   			=   "egress-bucket-devs3"
 acl     					=   ""
 force_destroy    			=   ""
 events		                =   []
