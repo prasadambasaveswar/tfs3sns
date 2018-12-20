@@ -44,14 +44,10 @@ resource "aws_sns_topic" "s3-topic" {
   policy = <<POLICY
 {
     "Version":"2008-10-17",
-    "Id": "SNS-S3Topic-Policy",
     "Statement":[
       {
         "Effect": "Allow",
-        "Sid": "SNSPolicy",
-        "Principal": {
-            "Service": "s3.amazonaws.com"
-            },
+        "Principal": {"AWS":"*"},
         "Action": "SNS:Publish",
         "Resource": ${jsonencode(var.sns_topic_resource)},
         "Condition":{
