@@ -1,7 +1,7 @@
 s3-egress-bucket   			=   "egress_bucket"
 acl     					=   ""
 force_destroy    			=   ""
-events		                =   ""
+events		                =   []
 filter_suffix		        =   ""
 tags             =   {
       "Environment"="DEV"
