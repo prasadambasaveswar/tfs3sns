@@ -2,8 +2,8 @@ pipeline {
     agent any
 
   environment {
-      tf_version = '0.11.7'
-      config_path = '/var/lib/jenkins/workspace/tfs3sns/'
+      tf_version = '0.11.11'
+      config_path = '/var/lib/jenkins/workspace/tfs3sns'
     }
 
     parameters {
