@@ -1,4 +1,4 @@
-variable "bucket" {
+variable "s3-egress-bucket" {
   description = "The name of the bucket. If omitted, Terraform will assign a random, unique name."
   }
 
@@ -37,51 +37,16 @@ variable "tags" {
 }
 
 ##variables for s3 bucket notifications
-variable "create_s3_notification" {
-  default = false
-}
-variable "create_sns_notification" {
-  default = false
-}
-variable "existing_sns_notification" {
-  default = false
-}
 
-variable "id" {
-  default = ""
+variable "sns-egress-notification" {
+  description = "sns engress notification"
 }
-
-variable "topic_arn" {
-  default = ""
-}
-
 
 variable "events" {
   type = "list"
   default = ["s3:ObjectCreated:*"]
 }
 
-
-variable "filter_prefix" {
-  default = ""
-}
-
 variable "filter_suffix" {
   default = ""
-}
-
-
-##sns topic policy
-variable "sns_topic_resource"{
-  type = "list"
-  default = []
-}
-
-variable "sns_topic_name"{
-  default = ""
-}
-
-variable "sns_topic_subscription_principal"{
-  type = "list"
-  default = []
 }
