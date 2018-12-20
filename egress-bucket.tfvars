@@ -1,13 +1,7 @@
-bucket             			=   "egress-bucket-devs3"
+s3-egress-bucket   			=   "egress_bucket"
 acl     					=   ""
 force_destroy    			=   ""
-create_s3_notification      =   "true"
-create_sns_notification     =   "true"
-existing_sns_notification   =   "true"
-id                  		=   ""
-topic_arn                	=   ""
-events		                =   []
-filter_prefix			    =   ""
+events		                =   ""
 filter_suffix		        =   ""
 tags             =   {
       "Environment"="DEV"
@@ -16,6 +10,4 @@ tags             =   {
       "AppId"="S3-SNS"
       "AppName"="S3SNS"
 }
-sns_topic_resource              =   [] 
-sns_topic_name				    =   "sns-egress-notfication"
-sns_topic_subscription_principal=   []
+sns-egress-notification     =   "dropzone-egress-tpc"
