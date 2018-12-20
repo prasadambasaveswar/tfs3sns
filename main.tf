@@ -47,7 +47,7 @@ resource "aws_sns_topic" "s3-topic" {
         "Effect": "Allow",
         "Principal": {"AWS":"*"},
         "Action": "SNS:Publish",
-        "Resource": ${jsonencode(var.sns_topic_resource)},
+        "Resource": "arn:aws:sns:*:*:${var.sns_topic_name}",
         "Condition":{
             "ArnLike":{"aws:SourceArn":"${aws_s3_bucket.s3_bucket.arn}"}
         }
