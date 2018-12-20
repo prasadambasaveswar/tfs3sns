@@ -15,7 +15,6 @@ resource "aws_s3_bucket" "s3_bucket" {
  }
  
 resource "aws_s3_bucket_notification" "bucket_notification_new_sns" {
-  count = "${var.create_s3_notification && var.create_sns_notification ? 1 : 0}"
   bucket = "${aws_s3_bucket.s3_bucket.id}"
   topic {
     topic_arn = "${aws_sns_topic.s3-topic.arn}"
@@ -27,7 +26,6 @@ resource "aws_s3_bucket_notification" "bucket_notification_new_sns" {
 
 
 resource "aws_sns_topic" "s3-topic" {
-  count = "${var.create_s3_notification && var.create_sns_notification ? 1 : 0}"
   name = "${var.sns_topic_name}"
   policy = <<POLICY
 {
