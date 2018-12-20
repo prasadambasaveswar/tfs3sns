@@ -37,7 +37,7 @@ resource "aws_sns_topic" "s3-topic" {
         "Action": "SNS:Publish",
         "Resource": "arn:aws:sns:*:*:${var.sns_topic_resource}",
         "Condition":{
-            "ArnLike":{"aws:SourceArn":"${aws_s3_bucket.egress-bucket.arn}"}
+            "ArnLike":{"aws:SourceArn":"${aws_s3_bucket.s3_bucket.arn}"}
         }
     }]
 }
