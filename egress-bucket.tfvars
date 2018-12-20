@@ -1,4 +1,4 @@
-bucket             			=   "egress-bucket"
+bucket             			=   "egress-bucket-devs3"
 acl     					=   ""
 force_destroy    			=   ""
 create_s3_notification      =   "true"
