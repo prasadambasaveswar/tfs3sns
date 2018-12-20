@@ -1,7 +1,7 @@
 #s3 bucket
 
 provider "aws" {
-  region = "${data.terraform_remote_state.aws_region}"
+  region = "us-east-1"
 }
 
 resource "aws_s3_bucket" "s3_bucket" {
