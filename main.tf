@@ -15,34 +15,6 @@ resource "aws_s3_bucket" "s3_bucket" {
   logging = "${var.logging}"
  }
  
-resource "aws_s3_bucket_notification" "bucket_notification_new_sns" {
-  count = "${var.create_s3_notification && var.create_sns_notification ? 1 : 0}"
-  bucket = "${aws_s3_bucket.s3_bucket.id}"
-  topic {
-    topic_arn = "${aws_sns_topic.s3-topic.arn}"
-    events         = "${var.events}"
-    filter_suffix  = "${var.filter_suffix}"
-  }
-}
-
-
-resource "aws_sns_topic" "s3-topic" {
-  count = "${var.create_s3_notification && var.create_sns_notification ? 1 : 0}"
-  name = "${var.sns_topic_name}"
-  policy = <<POLICY
-{
-    "Version":"2008-10-17",
-    "Statement":[
-      {
-        "Effect": "Allow",
-        "Principal": {"AWS":"*"},
-        "Action": "SNS:Publish",
-        "Resource": "arn:aws:sns:*:*:${var.sns_topic_name}",
-        "Condition":{
-            "ArnLike":{"aws:SourceArn":"${aws_s3_bucket.s3_bucket.arn}"}
-        }
-      }
-    ]
-}
-POLICY
+resource "aws_vpc" "demo" {
+  cidr_block = "10.0.0.0/16"
 }
